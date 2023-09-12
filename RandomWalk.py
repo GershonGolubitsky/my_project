@@ -12,7 +12,7 @@ class RandomWalk:
         self.coordinate = [[0 for step in range(self.steps)] for d in range(self.dimensions)]
 
     def walk(self):
-        # Creates a random "movement" in the alrray of dimensions
+        # Creates a random "movement" in the alrrauy of dimensions
         for step in range(self.steps - 1):
             # Generates a random number between 0 and a number of dimensions
             random_d = random.randint(0, self.dimensions)
