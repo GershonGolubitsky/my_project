@@ -3,6 +3,8 @@ import csv
 from tqdm import tqdm
 import requests
 
+# This is a scripty for scraping the "hacker-news" website and retrieves all the info on the top stories
+
 HN_GENERAL = 'https://hacker-news.firebaseio.com/v0/'
 HN_ITEM = 'item/{}.json?print=pretty'
 HN_TOP_STORIES = 'topstories.json?print=pretty'
@@ -34,6 +36,8 @@ def save_info(stories_info, file):
         dict_writer = csv.DictWriter(file, keys, extrasaction='ignore')
         dict_writer.writeheader()
         dict_writer.writerows(stories_info)
+
+
 def main():
     if len(sys.argv) < 2:
         raise ValueError('No file secified')
@@ -42,4 +46,6 @@ def main():
     stories_id = get_top_stories()
     stories_info = get_all_stories_info(stories_id)
     save_info(stories_info, file)
+
+
 main()
