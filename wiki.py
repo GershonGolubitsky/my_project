@@ -1,4 +1,4 @@
-# wiki
+# wiki tttt
 import requests
 from bs4 import BeautifulSoup
 import random
