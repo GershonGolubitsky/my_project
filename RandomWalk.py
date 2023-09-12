@@ -4,14 +4,19 @@ import matplotlib.pyplot as plt
 
 class RandomWalk:
     def __init__(self, dimensions, steps):
-        self.d = dimensions
+        # The number of dimensions you can go
+        self.dimensions = dimensions
+        # The amount of steps you can take
         self.steps = steps
-        self.cordinate_rw = [[0 for step in range(self.steps)] for d in range(self.d)]
+        # Makes a matrix of amount of dimensions and amount of steps
+        self.coordinate = [[0 for step in range(self.steps)] for d in range(self.dimensions)]
 
     def walk(self):
-        for step in range(self.steps-1):
-            random_d = random.randint(0, self.d)
-            for d in range(self.d):
+        # Creates a random "movement" in the array of dimensions
+        for step in range(self.steps - 1):
+            # Generates a random number between 0 and a number of dimensions
+            random_d = random.randint(0, self.dimensions)
+            for d in range(self.dimensions):
                 if d == random_d:
                     self.move(d, step)
                 else:
@@ -22,17 +27,17 @@ class RandomWalk:
         coin_flip = random.random()
         if coin_flip < 0.5:
             direction = -1
-        self.cordinate_rw[d][step+1] = self.cordinate_rw[d][step] + direction
+        self.coordinate[d][step + 1] = self.coordinate[d][step] + direction
 
     def stay_put(self, d, step):
-        self.cordinate_rw[d][step + 1] = self.cordinate_rw[d][step]
+        self.coordinate[d][step + 1] = self.coordinate[d][step]
 
     def display(self):
-        if self.d == 1:
-            plt.plot([step for step in range(self.steps)], self.cordinate_rw[0])
+        if self.dimensions == 1:
+            plt.plot([step for step in range(self.steps)], self.coordinate[0])
             plt.show()
-        elif self.d == 2:
-            plt.plot(self.cordinate_rw[0], self.cordinate_rw[1])
+        elif self.dimensions == 2:
+            plt.plot(self.coordinate[0], self.coordinate[1])
             plt.show()
 
 
