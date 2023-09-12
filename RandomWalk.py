@@ -1,5 +1,7 @@
 import random
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 
 class RandomWalk:
@@ -47,20 +49,22 @@ class RandomWalk:
             plt.subplot(111, projection="3d")
             plt.plot(self.coordinate[0], self.coordinate[1], self.coordinate[2])
             plt.show()
-        else:
-            for i in self.coordinate:
-                for j in i:
-                    print(j, end=" ")
-                print()
+        elif self.dimensions >= 4:
+            rows = [f' step {i}' for i in range(1, self.steps + 1)]
+            columns = [f' dimension {i}' for i in range(1, self.dimensions + 1)]
+            table = pd.DataFrame(self.coordinate, columns, rows)
+
+            print(f'Table from {self.dimensions} dimensions:  \n \n {table}')
+
+rw = RandomWalk(2, 16)
+rw.walk()
+rw.display()
+
+rw1 = RandomWalk(3, 16)
+rw1.walk()
+rw1.display()
 
 
-
-
-
-# rw = randomWalk(3, 16)
-# rw.walk()
-# rw.display()
-
-rw2 = RandomWalk(6, 10)
+rw2 = RandomWalk(4, 5)
 rw2.walk()
 rw2.display()
