@@ -1,5 +1,7 @@
 from tqdm import tqdm
 import random
+
+
 def insertion_sort(arr):
     for i in range(1, len(arr)):
         j = i
@@ -26,6 +28,7 @@ def counting_sort(arr):
             j += 1
     return final_arr
 
+#function test
 def test(sorting_function, num_of_tests):
     for _ in tqdm(range(num_of_tests)):
         random_length = random.randint(0, 1000)
@@ -40,9 +43,9 @@ def test(sorting_function, num_of_tests):
             return False
 
     print("You are a king!!")
+
+
 #     return True
 
 
-
 test(counting_sort, 100000)
-
