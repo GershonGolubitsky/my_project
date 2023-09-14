@@ -1,5 +1,6 @@
 from tqdm import tqdm
 import random
+import numpy as np
 
 
 def insertion_sort(arr):
@@ -28,11 +29,61 @@ def counting_sort(arr):
             j += 1
     return final_arr
 
-#function test
+
+arr = [0, 3, 10, -2, 9, 23, -90, 8]
+
+
+def Quick_Sort(arr):
+    arr = arr[:]
+    if len(arr) < 2:
+        return arr
+
+    arr_right = []
+    arr_left = []
+    pivot_idx = int(len(arr) / 2)
+    pivot = arr.pop(pivot_idx)
+    for i in range(len(arr)):
+        if pivot < arr[i]:
+            arr_right.append(arr[i])
+        else:
+            arr_left.append(arr[i])
+    arr_addright = []
+    arr_right = Quick_Sort(arr_right)
+    arr_left = Quick_Sort(arr_left)
+    arr = arr_left + [pivot] + arr_right
+    return arr
+
+    # while (len(arr_right) > 1):
+    #     pivot = int(len(arr_right) / 2)
+    #     for i in range(0, len(arr_right)):
+    #         if arr[pivot] > arr[i]:
+    #             arrr=[]
+    #             arrr.append(arr[i])
+    #         else:
+    #             arr_left.append(arr[i])
+
+    # pivot = random.randint(1, len(arr_left) - 2)
+    # for i in range(0, len(arr_left)):
+    #     if arr[pivot] > arr[i]:
+    #         arr_right.append(arr[i])
+    #     else:
+    #         arr_left.append(arr[i])
+
+    # print(arr)
+    # print(pivot)
+    # print(arr[pivot])
+    # print(arr_left)
+    # print(arr_right)
+
+
+Quick_Sort(arr)
+
+
+# function test of all algoritms
 def test(sorting_function, num_of_tests):
     for _ in tqdm(range(num_of_tests)):
-        random_length = random.randint(0, 1000)
-        random_list = [random.randint(-2000, 2000) for _ in range(random_length)]
+        random_length = random.randint(0, 200)
+        random_list = [random.randint(-20000, 20000) for _ in range(random_length)]
         to_test = sorting_function(random_list)
         expected = sorted(random_list)
         if to_test != expected:
@@ -44,8 +95,7 @@ def test(sorting_function, num_of_tests):
 
     print("You are a king!!")
 
-
 #     return True
 
 
-test(counting_sort, 100000)
+test(Quick_Sort, 10)
