@@ -52,30 +52,6 @@ def Quick_Sort(arr):
     arr_left = Quick_Sort(arr_left)
     arr = arr_left + [pivot] + arr_right
     return arr
-
-    # while (len(arr_right) > 1):
-    #     pivot = int(len(arr_right) / 2)
-    #     for i in range(0, len(arr_right)):
-    #         if arr[pivot] > arr[i]:
-    #             arrr=[]
-    #             arrr.append(arr[i])
-    #         else:
-    #             arr_left.append(arr[i])
-
-    # pivot = random.randint(1, len(arr_left) - 2)
-    # for i in range(0, len(arr_left)):
-    #     if arr[pivot] > arr[i]:
-    #         arr_right.append(arr[i])
-    #     else:
-    #         arr_left.append(arr[i])
-
-    # print(arr)
-    # print(pivot)
-    # print(arr[pivot])
-    # print(arr_left)
-    # print(arr_right)
-
-
 Quick_Sort(arr)
 
 
