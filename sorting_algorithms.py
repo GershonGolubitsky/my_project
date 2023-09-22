@@ -1,6 +1,9 @@
 from tqdm import tqdm
 import random
 import numpy as np
+import time
+import matplotlib.pyplot as plt
+from HeapSort import heap_sort
 
 
 def insertion_sort(arr):
@@ -17,7 +20,6 @@ def counting_sort(arr):
         return arr
     min_element = min(arr)
     max_element = max(arr)
-
     auxiliary_arr = [0] * (max_element - min_element + 1)
     for value in arr:
         auxiliary_arr[value - min_element] += 1
@@ -49,7 +51,7 @@ def quick_sort(arr):
     arr_right = quick_sort(arr_right)
     arr_left = quick_sort(arr_left)
     a = arr_left + [pivot] + arr_right
-    print(a)
+    return a
     # return a
 
 
@@ -121,21 +123,51 @@ def merge_sort(mylist):
 # merge_sort(mylist)
 
 
-def test(sorting_function, num_of_tests):
-    for _ in tqdm(range(num_of_tests)):
-        random_length = random.randint(0, 2000)
-        random_list = [random.randint(0, 2000) for _ in range(random_length)]
-        to_test = sorting_function(random_list)
-        expected = sorted(random_list)
-        if to_test != expected:
-            print("FAIL!")
-            print("your output is:", to_test)
-            print("the expected output is:", expected)
-            print("try debugging using this input:", random_list)
-            return False
+#  Test function to verify sorting algorithms
+def test_sorting_algorithm(sort_func, n=10):
+    # Perform n random test cases
+    for _ in range(n):
+        length = random.randint(10, 100)
+        arr = [random.randint(100, 100_000) for _ in range(length)]
+        expected = sorted(arr)
+        # Verify that the sorted array matches the expected result
+        assert sort_func(arr) == expected
 
-    print("You are a king!!")
+    print("All test cases passed")
 
-#     return True
 
-test(merge_sort, 1000)
+test_sorting_algorithm(insertion_sort)
+length = 10
+random.sample(range(length ** 3), length)
+
+
+# Function to plot the performance of sorting algorithms
+def plot_sorting_performance(algorithms):
+    # Define the lengths of arrays for performance testing
+    lengths = [100, 500, 1_000, 5_000, 10_000, 15_000, 20_000]
+    for algo_name, algo_func in algorithms.items():
+        print(algo_name)
+        execution_times = []
+        for length in lengths:
+            print(algo_name, f'len: {length}')
+            arr = random.sample(range(length ** 3), length)
+            start_time = time.time()
+            algo_func(arr)
+            end_time = time.time()
+            execution_times.append(end_time - start_time)
+
+        # Plot the execution times for each array length
+        plt.plot(lengths, execution_times, label=algo_name)
+
+    plt.xlabel("Array Length")
+    plt.ylabel("Execution Time (seconds)")
+    plt.legend()
+    plt.show()
+
+
+# algorithms = {'insertion_sort':insertion_sort}
+
+algorithms = {'insertion_sort': insertion_sort,
+             'alfa_quick_sort': quick_sort,  'heap_sort': heap_sort,
+             'counting_sort': counting_sort, 'merge_alfa': merge_sort}
+plot_sorting_performance(algorithms)
