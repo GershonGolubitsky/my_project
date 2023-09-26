@@ -6,9 +6,6 @@ class TreeNode:
         self.value = value
         self.left = left
         self.right = right
-        self.counter_l = 0
-        self.counter_r = 0
-
 
 def zigzag(node, orientation):
     # If the node has no sons, you have reached the end of the tree
