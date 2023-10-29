@@ -1,6 +1,8 @@
 import random
 
-# Create class to represent individual playing cards
+"""Create class to represent individual playing cards"""
+
+
 class Card:
     def __init__(self, suit, name, rank):
         self.suit = suit
@@ -10,22 +12,25 @@ class Card:
     def __str__(self):
         return f"Suit: {self.suit}, Name: {self.name}, Rank: {self.rank}"
 
-# comparisons between cards based on their ranks
+    """comparisons between cards based on their ranks"""
+
     def __lt__(self, other):
         if self.rank == other.rank:
             return self.suit < other.suit
         return self.rank < other.rank
 
-# comparisons between cards based on their ranks
+    """comparisons between cards based on their ranks"""
+
     def __gt__(self, other):
         if self.rank == other.rank:
             return self.suit > other.suit
         return self.rank > other.rank
 
+
 # Create a `Deck` class to represent a standard deck of cards
 class DeckCards():
     def __init__(self):
-        # An array containing a deck of cards
+        """An array containing a deck of cards"""
         self.deck = []
         # Creating a joker card
         self.joker = Card("Joker", "Joker", float("inf"))
@@ -36,7 +41,7 @@ class DeckCards():
         # Creating a deck of cards
         for suit in self.all_suit:
             for name in range(len(self.all_name)):
-                #Create a card by calling the constructor of the parent class
+                # Create a card by calling the constructor of the parent class
                 one_card = Card(suit, self.all_name[name], name + 1)
                 # Adds a card to the deck
                 self.deck.append(one_card)
@@ -44,39 +49,43 @@ class DeckCards():
         for i in range(2):
             self.deck.append(self.joker)
 
-    # shuffle the cards in the deck
+    """shuffle the cards in the deck"""
+
     def shuffle(self):
         random.shuffle(self.deck)
 
-    # draw a single card from the deck
+    """draw a single card from the deck"""
+
     def draw(self):
         draw_card = self.deck.pop()
         return (f"Suit: {draw_card.suit} Name:{draw_card.name} Rank: {draw_card.rank}\n")
 
-    # return the number of cards in the deck
+    """return the number of cards in the deck"""
+
     def __len__(self):
         return len(self.deck)
 
-    # provide a human-readable representation of the deck
+    """provide a human-readable representation of the deck"""
+
     def __str__(self):
         result = ""
         for card in self.deck:
             result += f"Suit: {card.suit}, Name: {card.name}, Rank: {card.rank}\n"
         return result
 
-    # access cards in the deck by index
+    """access cards in the deck by index"""
     def __getitem__(self, item):
         return self.deck[item]
 
-    # sort the deck by rank
+    """sort the deck by rank"""
     def sort_by_rank(self):
         self.deck.sort(key=lambda card: card.rank)
 
-    # sort the deck by suit
+    """sort the deck by suit"""
     def sort_by_suit(self):
         self.deck.sort(key=lambda card: card.suit)
 
-# deal a specified number of cards from the deck into a hand
+"""deal a specified number of cards from the deck into a hand"""
 def deal_hand(deck, num_cards):
     hand = ""
     for i in range(num_cards):
@@ -84,16 +93,17 @@ def deal_hand(deck, num_cards):
     # Returns all the cards that came out of the deck
     return str(hand)
 
-# count how many cards of each rank are in the deck
+
+"""count how many cards of each rank are in the deck"""
 def count_cards(deck):
     # Resets a deck
-    count = {'A': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0, '10': 0, 'Prince': 0, 'Queen': 0, 'King': 0, 'Joker': 0}
+    count = {'A': 0, '2': 0, '3': 0, '4': 0, '5': 0, '6': 0, '7': 0, '8': 0, '9': 0, '10': 0, 'Prince': 0, 'Queen': 0,
+             'King': 0, 'Joker': 0}
     # If a card is in the deck, add 1 to the count
     for card in deck.deck:
         name = str(card.name)
         count[name] += 1
     return count
-
 
 
 if __name__ == "__main__":
@@ -116,7 +126,6 @@ if __name__ == "__main__":
     # card2 = Card("Club", "Queen", 11)
     # print(card1 < card2)
     # print(card1 > card2)
-
 
     # a.draw()
 
