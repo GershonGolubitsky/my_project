@@ -30,7 +30,7 @@ for point in second_part_data:
     distances = np.sqrt(np.sum((first_part_data - point) ** 2, axis=1))
 
     # Finding the indices of the n closest points in the first part to the current point in the second part
-    closest_indices = np.argsort(distances)[:3]
+    closest_indices = np.argsort(distances)[:10]
 
     # Count the occurrences of each target value in the closest points
     count_zeros = np.count_nonzero(first_part_target[closest_indices] == 0)
@@ -110,3 +110,13 @@ print("Number of matches between second_part_target and selected_target:", match
 #
 # print(first_part_data, first_part_target)
 #
+
+def split_train_test(x,y):
+    # return x_train, x_test, y_train, y_test
+    pass
+
+def knn_predict(x_train, y_train, x_test):
+    pass
+
+def accuracy(y_test, y_pred):
+    pass
